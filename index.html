@@ -1,0 +1,1994 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/png" sizes="16x16" href="https://images.koinwatch.com/images/favicon.png">
+    
+<title>KoinWatch - Crypto Dashboard and Trading Bots for Bitcoin</title>
+    
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="icon" type="image/png" sizes="16x16" href="https://images.koinwatch.com/images/favicon.png">
+
+  
+
+<link href="https://css.koinwatch.com/css/common.css" rel="stylesheet">
+<link href="https://css.koinwatch.com/css/progress.css" rel="stylesheet">
+
+
+<script src="https://java.koinwatch.com/java/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://css.koinwatch.com/css/sweetalert.css">
+<script src="https://java.koinwatch.com/java/sweetalert2@9.js"></script>
+<link rel="stylesheet" type="text/css" href="https://css.koinwatch.com/css/sweetalert2@9.css">
+
+
+<!--OLD-->
+<link href="https://css.koinwatch.com/css/page.css" rel="stylesheet">
+<!--NEW-->
+<link href="https://css.koinwatch.com/template-main.css" rel="stylesheet">
+
+<script src="https://java.koinwatch.com/java/jquery.min.js"></script>
+<script src="https://java.koinwatch.com/main.js"></script>
+<script src="https://java.koinwatch.com/java/page.js"></script>
+<script src="https://java.koinwatch.com/java/common.js"></script>
+
+
+    
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">    
+
+
+    
+<script>
+	let customerID = ('DEMO-'+Math.floor(new Date()))
+	let pageIdentifcation =  'SIGNALS-DASHBOARD-DEVELOPER'
+
+</script>    
+
+    
+<script src="https://java.koinwatch.com/java/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://css.koinwatch.com/css/sweetalert.css">
+    
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+<script src="https://java.koinwatch.com/signals/js/d3.js"></script>   
+<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>    
+
+
+<script src="signals-config.json"></script>
+<script src="exchanges-list.json"></script>
+
+<script src="algorithm.js"></script>
+<script src="signals-graph.js"></script>
+<script src="market-signals.js"></script>
+
+<link rel="stylesheet" href="https://www.koinwatch.com/css/signals.css" /> 
+<link rel="stylesheet" href="https://www.koinwatch.com/css/signals-graph.css" /> 
+    
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<style>
+    
+   
+
+</style>
+
+</head>
+
+<body>
+  
+  <div class='dashboardContainer'>
+  
+  <!-- SELECTED MARKET -->
+  <input type="hidden" value="4188" id="marketExchPairID" name="marketExchPairID" />
+      
+    
+  <!-- MARKETS -->
+   
+  
+    
+<div class='marketDataTemplate'>    
+        
+<div class='cont'>
+    <img src='' class='logoURL' />
+
+    <div class='priceCont'>
+    
+        <div>
+            <div class='marketSymbolCont'>
+            <span class='marketCurrency'></span>-<span class='baseCurrency'></span>
+            </div>
+            <span class='lastPrice'></span>
+        </div>        
+        
+        <div class="prediction">            
+            <img src='https://images.koinwatch.com/images/predicted_price_icon.png' class='predictIcon' />&nbsp;<span class='bc'></span><span class="predictedPrice"></span>&nbsp;&nbsp;<span class="predictedChange">----</span>
+        </div>
+        
+    </div> 
+    <div class="sc-gauge">
+        <div class="sc-background">
+          <div class="sc-percentage"></div>
+          <div class="sc-mask"></div>
+            <span class="sc-score score">---</span>
+
+          <span class="sc-value signal">---</span>
+
+        </div>
+
+    </div>   
+    
+
+</div>    
+     
+  
+    <div class='marketDetails'>    
+
+
+     <div class='books'>
+         
+            <div class='orderBookScore'></div> 
+        
+        <div class='bookDepths'>
+            
+          <div class='orderBookDepthHeader'>
+              <span class='smlTxt'>Book Depth</span>
+              <span class='smlTxt'>Supply/Demand</span>
+          </div>
+            
+              <div class='row'><span class='OBscoresDepthlvl25'></span> <span class='OBorderBookScorelvl25 bubble'></span> 
+              </div>
+              <div class='row'><span class='OBscoresDepthlvl50'></span> <span class='OBorderBookScorelvl50 bubble'></span>               
+              </div>
+              <div class='row'><span class='OBscoresDepthlvl100'></span> <span class='OBorderBookScorelvl100 bubble'></span>
+              </div>
+              <div class='row'><span class='OBscoresDepthlvl200'></span> <span class='OBorderBookScorelvl200 bubble'></span> 
+              </div>
+              <div class='row'><span class='OBscoresDepthlvl500'></span> <span class='OBorderBookScorelvl500 bubble'></span>
+              </div>
+              <div class='row'><span class='OBscoresDepthlvl1000'></span> <span class='OBorderBookScorelvl1000 bubble'></span>
+              </div>          
+            
+        </div>
+
+    </div>     
+
+    <div class='volumes'>
+        
+            <div class='volumeScore'></div>
+
+        <div class='volumeScoresCont'>
+            
+              <div class='volumeScoresHeader'>
+                  <span style="width: 48px; text-align: left">Time ago</span>
+                  <span style="width: 42px;">Total</span>
+                  <span style="width: 58px;text-align: right; padding-right: 3px;">Sentiment</span>
+              </div>            
+
+              <div class='row'>
+                  <span class='time'>15 secs</span> 
+                  <span class='volumeT15s volume'></span> 
+
+                  <span class='volumeScoreT15s volScore bubble'></span> 
+              </div>
+              <div class='row'>
+                  <span class='time'>30 secs</span> 
+                  <span class='volumeT30s volume'></span> 
+
+                  <span class='volumeScoreT30s volScore bubble'></span>               
+              </div>
+              <div class='row'>
+                  <span class='time'>1 min</span> 
+                  <span class='volumeT1 volume'></span> 
+
+                  <span class='volumeScoreT1 volScore bubble'></span>
+              </div>
+              <div class='row'>
+                  <span class='time'>2 min</span> 
+                  <span class='volumeT2 volume'></span> 
+
+                  <span class='volumeScoreT2 volScore bubble'></span> 
+              </div>
+              <div class='row'>
+                  <span class='time'>5 min</span> 
+                  <span class='volumeT5 volume'></span> 
+
+                  <span class='volumeScoreT5 volScore bubble'></span>
+              </div>
+              <div class='row'>
+                  <span class='time'>10 min</span> 
+                  <span class='volumeT10 volume'></span> 
+
+                  <span class='volumeScoreT10 volScore bubble'></span>
+              </div>     
+            
+        </div>
+
+    </div>
+        
+    <div class='miniMarketGraphHeader'>      
+      &nbsp;
+    </div>        
+    <div  id='miniMarketGraph[EXCHPAIRID]'  class='miniMarketGraph'>
+        
+
+    </div>
+  
+
+        
+        <div class='orderBooks'>
+            
+            <div class='wallsHeader'>
+                
+                <span style="width:41px">Value</span>      
+
+                <span style="width:30px">Change</span>
+
+                <span style="width:43px; margin-right: 12px;">Age</span>
+
+                <span style="width:43px">Accum</span>
+
+                <span style="width:62px; text-align:left">% to Price</span>
+
+                <span>Price</span>
+
+
+            </div>
+            <div class='wallsCont'>
+                <div class='askWalls'>
+                    <div></div>
+                </div>
+
+                <div class='bidWalls'>
+                    <div></div>
+                </div>            
+            </div>
+            
+            
+        </div>
+        
+ 
+        
+      
+        
+        
+    </div>
+</div> 
+
+
+  <div id="marketsListData" class="marketsListData">
+      <img src="https://images.koinwatch.com/images/koinWatch-white-orange-340.png" alt="KoinWatch" />
+      
+    
+
+  </div>
+  
+      
+    <div class="marketArea maCont" id="marketArea">
+      
+      
+      
+    <div>
+    
+    <div class='graphContainer'>
+        
+        <div class='marketGraphTop'>
+            &nbsp;
+        </div>
+        <div class='graphControls'>
+            
+            <div class='inputKey1Display'>                    
+                <select id="inputKey1" name="inputKey1" class="inputKey hideThis" onChange="loadGraph();">
+                    <option selected value='lastPrice'>Last Price</option>
+                    <option value='bidPrice'>Bid Price</option>
+                    <option value='askPrice'>Ask Price</option>                
+                </select>
+            </div>
+            
+              <span class='addTopToY'><img src='https://images.koinwatch.com/images/graph_increaseY.png' /></span> 
+              <span class='addBottomToY'><img src='https://images.koinwatch.com/images/graph_decreaseY.png' /></span>
+              <span class='resetY'><img src='https://images.koinwatch.com/images/graph_resetY.png' /></span>
+            
+            
+              <input class="hideThis" id='inputKey1Colour' name='inputKey1Colour' value="#fff">
+              <input class="hideThis" id='inputKey4Colour' name='inputKey4Colour' value="#771FFF">
+              <input class="hideThis" id='buySignalColour' name='buySignalColour' value="#2BA84A" onfocusout ="loadGraph();"> 
+              <input class="hideThis" id='sellSignalColour' name='sellSignalColour' value="#ED5565" onfocusout ="loadGraph();"> 
+            
+            
+        </div>        
+        <div id="marketGraph" class='marketGraph'>
+
+        </div>
+        
+
+        
+        <div class='marketStats'>
+            
+            <div class='row'>
+                <img src='' class='graphLogoURL' />
+                <div class='marketSymbol' style='font-size: 25px;'>                
+                </div>
+            </div>
+            
+            <div style='float: left' >
+                <div class='row' style="width:125px;">
+                    <span class='innerRow'>
+                        <span class='exchangeName'>                
+                        </span>
+                    </span>
+                    <span class='innerRow'>
+                        24h Vol : &#3647;<span class='vol24h'></span> 
+                    </span>
+                </div>        
+                <div class='row' style="width:110px;">
+                    <span class='innerRow'>
+                    Low: <span class='low'></span>
+                    </span>
+                    <span class='innerRow'>
+                    High: <span class='high'></span>
+                    </span>    
+                </div>
+            
+                
+                  <div class='row' style="width:125px;">
+                      <span class='innerRow'>
+                      24h Range  <span class='range24h'></span>
+                      </span>
+                  <span class='innerRow'>
+                      24h Avg Range  <span class='ATR24hPercent'></span>
+                      </span>  
+                      
+                  </div>
+                <div class='row' style="width:165px">
+                   <div class='innerRow'>
+                        1 pip = <span class='pipAmount'></span> = <span class='pipAmountPercent'></span> 
+                    </div>  
+                    <div class='innerRow'>
+                        1 % = <span class='onePercentAmount'></span> = <span class='onePercentAmountPips'></span> pips 
+                    </div>  
+                </div>
+
+                  
+              <div class='row' style="width:250px;">  
+                    <span class='innerRow'>
+                      Taker Fee = <span class='takerFeePercent'>%</span> = <span class='takerFeePips'>0</span> pips = <span class='takerFeeAmount'>0</span>
+                  </span>
+                  <span class='innerRow'>
+                      Maker Fee = <span class='makerFeePercent'>%</span> = <span class='makerFeePips'>0</span> pips = <span class='makerFeeAmount'>0</span>
+                  </span>
+              </div>                                    
+            </div>
+            
+   
+            
+          </div>        
+
+        <div id='marketBars' class='marketBars algorithmIndicators' style="font-size: 10px;">
+            
+                        
+            <hr/>
+            <div class='inATRRange'>inATRRange <span></span></div>          
+            <div class='orderBookPriceIndicator'>orderBookPriceIndicator <span></span></div>            
+            <div class='volumeIndicator'>volumeIndicator <span></span></div>  
+            <div class='volumeBaselineIndicator'>volumeBaselineIndicator <span></span></div>            
+            <div class='orderBookIndicator'>orderBookIndicator <span></span></div>
+            <div class='orderBookSlowIndicator'>orderBookSlowIndicator <span></span></div>
+            <hr/>            
+            <div class='entryIndicator' style="font-size: 17px">Entry <span></span></div>
+            <div class='takeProfitIndicator' style="font-size: 17px">Take Profit <span></span></div>
+            <div class='exitIndicator' style="font-size: 17px">Exit <span></span></div>
+            <hr/>
+            <div class='stopIndicator'>stopIndicator <span></span></div>
+            <hr/>            
+            
+            
+            <div class='volatilityIndicator'>volatilityIndicator <span></span></div>
+            <hr/>            
+            <div class='trendIndicator'>trendIndicator <span></span></div>
+            <div class='trendSlowIndicator'>trendSlowIndicator <span></span></div>
+            
+            <hr/>                        
+            <div class='baseLineFastIndicator'>baseLineFastIndicator <span></span></div>            
+            <div class='baseLineIndicator'>baseLineIndicator <span></span></div>                        
+            <div class='baseLineSlowIndicator'>baseLineSlowIndicator <span></span></div>                
+            <hr/>                        
+            <div class='scoreIndicator'>scoreIndicator <span></span></div>
+            <div class='scoreSlowIndicator'>scoreSlowIndicator <span></span></div>
+            
+            
+        </div> 
+        
+        
+    </div>         
+        
+        
+    
+        
+        
+        
+<div class='marketGraphHeader'>
+                        
+        <span class='cont'>    
+            <select id="timePeriod" name="timePeriod" class="timePeriod" onChange="loadMarket()">
+            </select>
+        </span>    
+    
+          
+<!--    
+          <span class='cont'>
+              
+          <button id='chooseColour1'  onfocusout ="loadMarket()" class="jscolor
+            {hash:true, valueElement:'inputKey1Colour', styleElement:'chooseColour1'}">
+            &nbsp;
+        </button>
+          
+          
+            <select id="inputKey1" name="inputKey1" class="inputKey" onChange="loadGraph();">
+                <option value='lastPrice'>Last Price</option>
+                <option value='bidPrice'>Bid Price</option>
+                <option value='askPrice'>Ask Price</option>                
+            </select>
+          
+          </span>
+-->    
+
+          
+          <span class='cont'>
+          
+    <!--          
+        <button id='chooseColour4'  onfocusout ="loadMarket()" class="jscolor
+            {hash:true, valueElement:'inputKey4Colour', styleElement:'chooseColour4'}">
+            &nbsp;
+        </button>
+    -->          
+          Display Price
+        <select id="inputKey4" name="inputKey4" class="inputKey" onChange="loadGraph();"  style="width: 180px;">                
+            <option selected value='None'>None</option>                                      
+            <option value='indexPrice'>Bitmex Index Price</option>            
+            <option value='lastPriceAvg.1min'>Price 1min Avg</option>
+            <option value='lastPriceAvg.2min'>Price 2min Avg</option>
+            <option value='lastPriceAvg.5min'>Price 5min Avg</option>
+            <option value='lastPriceAvg.10min'>Price 10min Avg</option>            
+            <option value='lastPriceAvg.30min'>Price 30min Avg</option>
+            <option value='lastPriceAvg.1h'>Price 1h Avg</option>
+            <option value='lastPriceAvg.2h'>Price 2h Avg</option>
+            <option value='lastPriceAvg.4h'>Price 4h Avg</option>
+            <option value='lastPriceAvg.8h'>Price 8h Avg</option>
+            <option value='lastPriceAvg.12h'>Price 12h Avg</option>
+            <option value='lastPriceAvg.24h'>Price 24h Avg</option>
+            
+            <option value='orderBookLevels.05.price'>Orderbook Depth &plusmn;0.5%</option>
+            <option value='orderBookLevels.1.price'>Orderbook Depth &plusmn;1%</option>
+            <option value='orderBookLevels.2.price'>Orderbook Depth &plusmn;2%</option>
+            <option value='orderBookLevels.5.price'>Orderbook Depth &plusmn;5%</option>
+            <option value='orderBookLevels.10.price'>Orderbook Depth &plusmn;10%</option>
+            <option value='orderBookLevels.25.price'>Orderbook Depth &plusmn;25%</option>                      
+            
+            <option class='devOnly' value='orderBookLevels.05.avgPrice'>Orderbook Depth Avg &plusmn;&#189;%</option>
+            <option class='devOnly' value='orderBookLevels.1.avgPrice'>Orderbook Depth Avg &plusmn;1%</option>
+            <option class='devOnly' value='orderBookLevels.2.avgPrice'>Orderbook Depth Avg &plusmn;2%</option>
+            <option class='devOnly' value='orderBookLevels.5.avgPrice'>Orderbook Depth Avg &plusmn;5%</option>
+            <option class='devOnly' value='orderBookLevels.10.avgPrice'>Orderbook Depth Avg &plusmn;10%</option>
+            <option class='devOnly' value='orderBookLevels.25.avgPrice'>Orderbook Depth Avg &plusmn;25%</option>            
+            
+        </select>   
+
+          </span>
+    
+          
+<!--          
+          <span class='cont'>
+          
+            <button id='chooseColour2'  onfocusout ="loadMarket()" class="jscolor
+                {hash:true, valueElement:'inputKey2Colour', styleElement:'chooseColour2'}">
+                &nbsp;
+            </button>
+              <input class="hideThis" id='inputKey2Colour' name='inputKey2Colour' value="#FFDB13">
+          
+            <select id="inputKey2" name="inputKey2" class="inputKey" onChange="loadMarket()">                
+                <option value='predictedPrice'>Predicted Price</option>
+                <option value='predictedPrice2'>Predicted Price 2</option>
+                <option value='predictedPrice3'>Predicted Price 3</option>                
+                <option value='None'>None</option>
+            </select> 
+     
+              
+          </span>
+
+-->
+          
+          
+          <span class='cont'>
+                  
+               
+              Display Percentage 
+    <select id="inputKey3" name="inputKey3" class="inputKey" onChange="loadGraph();" style="width: 160px;">    
+        
+                <option value='None'>None</option>                
+
+
+                <option selected value='score'>KoinWatch Score</option>                
+                <option value='scoreAvg.5s'>Score Avg 5s</option>        
+                <option value='scoreAvg.15s'>Score Avg 15s</option>
+                <option value='scoreAvg.30s'>Score Avg 30s</option>
+                <option value='scoreAvg.1min'>Score Avg 1min</option>
+                <option value='scoreAvg.2min'>Score Avg 2min</option>
+                <option value='scoreAvg.5min'>Score Avg 5min</option>
+                <option value='scoreAvg.10min'>Score Avg 10min</option>
+                <option value='scoreAvg.30min'>Score Avg 30min</option>
+                <option value='scoreAvg.1h'>Score Avg 1h</option>
+                <option value='scoreAvg.2h'>Score Avg 2h</option>
+                <option value='scoreAvg.4h'>Score Avg 4h</option>
+                <option value='scoreAvg.8h'>Score Avg 8h</option>
+                <option value='scoreAvg.12h'>Score Avg 12h</option>
+                <option value='scoreAvg.24h'>Score Avg 24h</option>         
+        
+        
+        <option value='None'></option>
+                <option value='orderBookLevels.05.val'>Orderbook Depth &plusmn;&#189;%</option>
+                <option value='orderBookLevels.1.val'>Orderbook Depth &plusmn;1%</option>                
+                <option value='orderBookLevels.2.val'>Orderbook Depth &plusmn;2%</option>                
+                <option value='orderBookLevels.5.val'>Orderbook Depth &plusmn;5%</option>                
+                <option value='orderBookLevels.10.val'>Orderbook Depth &plusmn;10%</option>                
+                <option value='orderBookLevels.25.val'>Orderbook Depth &plusmn;25%</option>  
+
+                <option class='devOnly' value='orderBookLevels.05.avgVal'>Orderbook Depth Avg &plusmn;&#189;%</option>
+                <option class='devOnly' value='orderBookLevels.1.avgVal'>Orderbook Depth Avg &plusmn;1%</option>                
+                <option class='devOnly' value='orderBookLevels.2.avgVal'>Orderbook Depth Avg &plusmn;2%</option>                
+                <option class='devOnly' value='orderBookLevels.5.avgVal'>Orderbook Depth Avg &plusmn;5%</option>                
+                <option class='devOnly' value='orderBookLevels.10.avgVal'>Orderbook Depth Avg &plusmn;10%</option>                
+                <option class='devOnly' value='orderBookLevels.25.avgVal'>Orderbook Depth Avg &plusmn;25%</option>          
+                
+        <option value='None'></option>
+                <option value='volumeScore'>Volume Sentiment</option>        
+                <option value='volumeScoreAvg.5s'>Volume Avg 5s</option>        
+                <option value='volumeScoreAvg.15s'>Volume Avg 15s</option>
+                <option value='volumeScoreAvg.30s'>Volume Avg 30s</option>
+                <option value='volumeScoreAvg.1min'>Volume Avg 1min</option>
+                <option value='volumeScoreAvg.2min'>Volume Avg 2min</option>
+                <option value='volumeScoreAvg.5min'>Volume Avg 5min</option>
+                <option value='volumeScoreAvg.10min'>Volume Avg 10min</option>
+                <option value='volumeScoreAvg.30min'>Volume Avg 30min</option>
+                <option value='volumeScoreAvg.1h'>Volume Avg 1h</option>
+                <option value='volumeScoreAvg.2h'>Volume Avg 2h</option>
+                <option value='volumeScoreAvg.4h'>Volume Avg 4h</option>
+                <option value='volumeScoreAvg.8h'>Volume Avg 8h</option>
+                <option value='volumeScoreAvg.12h'>Volume Avg 12h</option>
+                <option value='volumeScoreAvg.24h'>Volume Avg 24h</option>
+                
+                
+                
+        <option value='None'></option>
+                <option value='orderBookScore'>Orderbook Sentiment</option>
+                <option value='orderBookScoreAvg.5s'>Orderbook Avg 5s</option>
+                <option value='orderBookScoreAvg.15s'>Orderbook Avg 15s</option>
+                <option value='orderBookScoreAvg.30s'>Orderbook Avg 30s</option>
+                <option value='orderBookScoreAvg.1min'>Orderbook Avg 1min</option>
+                <option value='orderBookScoreAvg.2min'>Orderbook Avg 2min</option>
+                <option value='orderBookScoreAvg.5min'>Orderbook Avg 5min</option>
+                <option value='orderBookScoreAvg.10min'>Orderbook Avg 10min</option>
+                <option value='orderBookScoreAvg.30min'>Orderbook Avg 30min</option>
+                <option value='orderBookScoreAvg.1h'>Orderbook Avg 1h</option>
+                <option value='orderBookScoreAvg.2h'>Orderbook Avg 2h</option>
+                <option value='orderBookScoreAvg.4h'>Orderbook Avg 4h</option>
+                <option value='orderBookScoreAvg.8h'>Orderbook Avg 8h</option>
+                <option value='orderBookScoreAvg.12h'>Orderbook Avg 12h</option>
+                <option value='orderBookScoreAvg.24h'>Orderbook Avg 24h</option>
+        
+
+        
+        
+        
+
+         <option value='None'></option>       
+                <option value='indicatorScore'>Trend Score</option>
+                <option value='indicatorScoreAvg.5s'>Trend Avg 5s</option>   
+                <option value='indicatorScoreAvg.15s'>Trend Avg 15s</option>                
+                <option value='indicatorScoreAvg.30s'>Trend Avg 30s</option>
+                <option value='indicatorScoreAvg.1min'>Trend Avg 1min</option>
+                <option value='indicatorScoreAvg.2min'>Trend Avg 2min</option>
+                <option value='indicatorScoreAvg.5min'>Trend Avg 5min</option>
+                <option value='indicatorScoreAvg.10min'>Trend Avg 10min</option>
+                <option value='indicatorScoreAvg.30min'>Trend Avg 30min</option>
+                <option value='indicatorScoreAvg.1h'>Trend Avg 1h</option>
+                <option value='indicatorScoreAvg.2h'>Trend Avg 2h</option>
+                <option value='indicatorScoreAvg.4h'>Trend Avg 4h</option>
+                <option value='indicatorScoreAvg.8h'>Trend Avg 8h</option>
+                <option value='indicatorScoreAvg.12h'>Trend Avg 12h</option>
+                <option value='indicatorScoreAvg.24h'>Trend Avg 24h</option>    
+        
+         <option value='None'></option>       
+                <option value='volumeFactorScore'>Volatility Score</option>
+                <option value='volumeFactorScoreAvg.1min'>Volatility Avg 1min</option>
+                <option value='volumeFactorScoreAvg.2min'>Volatility Avg 2min</option>
+                <option value='volumeFactorScoreAvg.5min'>Volatility Avg 5min</option>
+                <option value='volumeFactorScoreAvg.10min'>Volatility Avg 10min</option>
+                <option value='volumeFactorScoreAvg.30min'>Volatility Avg 30min</option>
+                <option value='volumeFactorScoreAvg.1h'>Volatility Avg 1h</option>
+                <option value='volumeFactorScoreAvg.2h'>Volatility Avg 2h</option>
+                <option value='volumeFactorScoreAvg.4h'>Volatility Avg 4h</option>
+                <option value='volumeFactorScoreAvg.8h'>Volatility Avg 8h</option>
+                <option value='volumeFactorScoreAvg.12h'>Volatility Avg 12h</option>
+                <option value='volumeFactorScoreAvg.24h'>Volatility Avg 24h</option>            
+        
+                
+<!--                
+
+DISABLED DUE TO OVERLOAD AND REDUCTION 
+        <option value='None'>---TREND PERIODS---</option>
+                <option value='ohlcv.1min.indicatorScore'>Trend 1min</option>
+                <option value='ohlcv.2min.indicatorScore'>Trend 2min</option>
+                <option value='ohlcv.5min.indicatorScore'>Trend 5min</option>
+                <option value='ohlcv.10min.indicatorScore'>Trend 10min</option>
+                <option value='ohlcv.30min.indicatorScore'>Trend 30min</option>
+                <option value='ohlcv.1h.indicatorScore'>Trend 1h</option>
+                <option value='ohlcv.2h.indicatorScore'>Trend 2h</option>
+                <option value='ohlcv.4h.indicatorScore'>Trend 4h</option>
+                <option value='ohlcv.8h.indicatorScore'>Trend 8h</option>
+                <option value='ohlcv.12h.indicatorScore'>Trend 12h</option>
+                <option value='ohlcv.24h.indicatorScore'>Trend 24h</option>
+
+
+
+     DISABLED TO GET SETTINGS AVAILABLE            
+        <option value='None'>---INDICATORS---</option>
+                <option value='ohlcv.1min.heiken'>Heiken 1min</option>
+                <option value='ohlcv.2min.heiken'>Heiken 2min</option>
+                <option value='ohlcv.5min.heiken'>Heiken 5min</option>    
+                <option value='ohlcv.10min.heiken'>Heiken 10min</option>    
+                <option value='ohlcv.30min.heiken'>Heiken 10min</option>    
+                <option value='ohlcv.1h.heiken'>Heiken 1h</option>    
+                <option value='ohlcv.2h.heiken'>Heiken 2h</option>    
+                <option value='ohlcv.4h.heiken'>Heiken 4h</option>    
+                <option value='ohlcv.8h.heiken'>Heiken 8h</option>    
+                <option value='ohlcv.12h.heiken'>Heiken 12h</option>   
+                <option value='ohlcv.24h.heiken'>Heiken 24h</option>   
+                
+                <option value='ohlcv.1min.DMI'>DMI 1min</option>
+                <option value='ohlcv.2min.DMI'>DMI 2min</option>
+                <option value='ohlcv.5min.DMI'>DMI 5min</option>                
+                <option value='ohlcv.10min.DMI'>DMI 10min</option>
+                <option value='ohlcv.30min.DMI'>DMI 30min</option>
+                <option value='ohlcv.1h.DMI'>DMI 1h</option>
+                <option value='ohlcv.2h.DMI'>DMI 2h</option>
+                <option value='ohlcv.4h.DMI'>DMI 4h</option>
+                <option value='ohlcv.8h.DMI'>DMI 8h</option>                  
+                <option value='ohlcv.12h.DMI'>DMI 12h</option>
+                <option value='ohlcv.24h.DMI'>DMI 24h</option>  
+                
+                <option value='ohlcv.1min.chaikVola'>Chaikins Volatility 1min</option>
+                <option value='ohlcv.2min.chaikVola'>Chaikins Volatility 2min</option>
+                <option value='ohlcv.5min.chaikVola'>Chaikins Volatility 5min</option>                
+                <option value='ohlcv.10min.chaikVola'>Chaikins Volatility 10min</option>
+                <option value='ohlcv.30min.chaikVola'>Chaikins Volatility 30min</option>
+                <option value='ohlcv.1h.chaikVola'>Chaikins Volatility 1h</option>
+                <option value='ohlcv.2h.chaikVola'>Chaikins Volatility 2h</option>
+                <option value='ohlcv.4h.chaikVola'>Chaikins Volatility 4h</option>
+                <option value='ohlcv.8h.chaikVola'>Chaikins Volatility 8h</option>                  
+                <option value='ohlcv.12h.chaikVola'>Chaikins Volatility 12h</option>
+                <option value='ohlcv.24h.chaikVola'>Chaikins Volatility 24h</option> 
+                
+                
+                <option value='ohlcv.1min.chandeM'>Chande Momentum 1min</option>
+                <option value='ohlcv.2min.chandeM'>Chande Momentum 2min</option>
+                <option value='ohlcv.5min.chandeM'>Chande Momentum 5min</option>                
+                <option value='ohlcv.10min.chandeM'>Chande Momentum 10min</option>
+                <option value='ohlcv.30min.chandeM'>Chande Momentum 30min</option>
+                <option value='ohlcv.1h.chandeM'>Chande Momentum 1h</option>
+                <option value='ohlcv.2h.chandeM'>Chande Momentum 2h</option>
+                <option value='ohlcv.4h.chandeM'>Chande Momentum 4h</option>
+                <option value='ohlcv.8h.chandeM'>Chande Momentum 8h</option>                  
+                <option value='ohlcv.12h.chandeM'>Chande Momentum 12h</option>
+                <option value='ohlcv.24h.chandeM'>Chande Momentum 24h</option>  
+                
+                <option value='ohlcv.1min.coppock'>Coppock 1min</option>
+                <option value='ohlcv.2min.coppock'>Coppock 2min</option>
+                <option value='ohlcv.5min.coppock'>Coppock 5min</option>                
+                <option value='ohlcv.10min.coppock'>Coppock 10min</option>
+                <option value='ohlcv.30min.coppock'>Coppock 30min</option>
+                <option value='ohlcv.1h.coppock'>Coppock 1h</option>
+                <option value='ohlcv.2h.coppock'>Coppock 2h</option>
+                <option value='ohlcv.4h.coppock'>Coppock 4h</option>
+                <option value='ohlcv.8h.coppock'>Coppock 8h</option>                  
+                <option value='ohlcv.12h.coppock'>Coppock 12h</option>
+                <option value='ohlcv.24h.coppock'>Coppock 24h</option>  
+                
+                <option value='ohlcv.1min.macdS'>MACD 1min</option>
+                <option value='ohlcv.2min.macdS'>MACD 2min</option>
+                <option value='ohlcv.5min.macdS'>MACD 5min</option>                
+                <option value='ohlcv.10min.macdS'>MACD 10min</option>
+                <option value='ohlcv.30min.macdS'>MACD 30min</option>
+                <option value='ohlcv.1h.macdS'>MACD 1h</option>
+                <option value='ohlcv.2h.macdS'>MACD 2h</option>
+                <option value='ohlcv.4h.macdS'>MACD 4h</option>
+                <option value='ohlcv.8h.macdS'>MACD 8h</option>                  
+                <option value='ohlcv.12h.macdS'>MACD 12h</option>
+                <option value='ohlcv.24h.macdS'>MACD 24h</option>  
+                
+                <option value='ohlcv.1min.macdVs'>MACD Strong 1min</option> 
+                <option value='ohlcv.2min.macdVs'>MACD Strong 2min</option>
+                <option value='ohlcv.5min.macdVs'>MACD Strong 5min</option>                
+                <option value='ohlcv.10min.macdVs'>MACD Strong 10min</option>
+                <option value='ohlcv.30min.macdVs'>MACD Strong 30min</option>
+                <option value='ohlcv.1h.macdVs'>MACD Strong 1h</option>
+                <option value='ohlcv.2h.macdVs'>MACD Strong 2h</option>
+                <option value='ohlcv.4h.macdVs'>MACD Strong 4h</option>
+                <option value='ohlcv.8h.macdVs'>MACD Strong 8h</option>                  
+                <option value='ohlcv.12h.macdVs'>MACD Strong 12h</option>
+                <option value='ohlcv.24h.macdVs'>MACD Strong 24h</option>  
+                
+                
+                <option value='ohlcv.1min.vortex'>Vortex 1min</option>        
+                <option value='ohlcv.2min.vortex'>Vortex 2min</option>
+                <option value='ohlcv.5min.vortex'>Vortex 5min</option>                
+                <option value='ohlcv.10min.vortex'>Vortex 10min</option>
+                <option value='ohlcv.30min.vortex'>Vortex 30min</option>
+                <option value='ohlcv.1h.vortex'>Vortex 1h</option>
+                <option value='ohlcv.2h.vortex'>Vortex 2h</option>
+                <option value='ohlcv.4h.vortex'>Vortex 4h</option>
+                <option value='ohlcv.8h.vortex'>Vortex 8h</option>                  
+                <option value='ohlcv.12h.vortex'>Vortex 12h</option>
+                <option value='ohlcv.24h.vortex'>Vortex 24h</option>                  
+                
+-->
+                
+<!--
+VALUES NOT WORKING NEEDS REVISION
+                <option value='ohlcv.1min.chaikOsc'>Chaikins Oscillator 1min</option>
+
+                <option value='ohlcv.1min.aroon'>Aroon 1min</option>
+                <option value='ohlcv.2min.aroon'>Aroon 2min</option>
+                <option value='ohlcv.5min.aroon'>Aroon 5min</option>                
+                <option value='ohlcv.10min.aroon'>Aroon 10min</option>
+                <option value='ohlcv.30min.aroon'>Aroon 30min</option>
+                <option value='ohlcv.1h.aroon'>Aroon 1h</option>
+                <option value='ohlcv.2h.aroon'>Aroon 2h</option>
+                <option value='ohlcv.4h.aroon'>Aroon 4h</option>
+                <option value='ohlcv.8h.aroon'>Aroon 8h</option>                
+
+                <option value='ohlcv.1min.chaikMF'>Chaikin Money Flow 1min</option>
+                <option value='ohlcv.2min.chaikMF'>Chaikin Money Flow 2min</option>
+                <option value='ohlcv.5min.chaikMF'>Chaikin Money Flow 5min</option>                
+                <option value='ohlcv.10min.chaikMF'>Chaikin Money Flow 10min</option>
+                <option value='ohlcv.30min.chaikMF'>Chaikin Money Flow 30min</option>
+                <option value='ohlcv.1h.chaikMF'>Chaikin Money Flow 1h</option>
+                <option value='ohlcv.2h.chaikMF'>Chaikin Money Flow 2h</option>
+                <option value='ohlcv.4h.chaikMF'>Chaikin Money Flow 4h</option>
+                <option value='ohlcv.8h.chaikMF'>Chaikin Money Flow 8h</option>                    
+-->
+
+
+                
+                                
+
+            </select> 
+
+        
+              
+          <select id="inputKey3MinPercent" name="inputKey3MinPercent" class="inputKey hideThis" onChange="loadGraph();">                
+                <option selected value='0'>&plusmn;0%</option>  
+                <option value='5'>&plusmn;5%</option>
+                <option value='10'>&plusmn;10%</option>
+                <option value='20'>&plusmn;20%</option>
+                <option value='30'>&plusmn;30%</option>
+                <option value='40'>&plusmn;40%</option>
+                <option value='50'>&plusmn;50%</option>
+                <option value='60'>&plusmn;60%</option>
+                <option value='68'>&plusmn;68%</option>
+                <option value='70'>&plusmn;70%</option>              
+                <option value='80'>&plusmn;80%</option>            
+                <option value='90'>&plusmn;90%</option>
+                <option value='100'>&plusmn;100%</option>       
+          </select>
+          <select id="inputKey3MinVolumeFactor" name="inputKey3MinVolumeFactor" class="inputKey hideThis" onChange="loadGraph();">                   <option selected value='0'>&plusmn;0x</option>
+                <option value='0.5'>&plusmn;0.5x</option>  
+                <option value='1'>&plusmn;1x</option>
+                <option value='2'>&plusmn;2x</option>
+                <option value='3'>&plusmn;3x</option>
+                <option value='4'>&plusmn;4x</option>
+                <option value='5'>&plusmn;5x</option>
+                <option value='8'>&plusmn;8x</option>
+                <option value='13'>&plusmn;13x</option>
+                <option value='21'>&plusmn;21x</option>              
+                <option value='34'>&plusmn;34x</option>            
+                <option value='55'>&plusmn;55x</option>
+                <option value='89'>&plusmn;89x</option>       
+          </select> 
+              
+
+              <!--
+          <input type="hidden" checked value='true' id='showGradient' name='showGradient'  />
+              -->
+<!--
+            <button id='chooseBuyColour'  onfocusout ="loadMarket()"  class="jscolor
+                {hash:true, valueElement:'buySignalColour', styleElement:'chooseBuyColour'}">
+                B
+            </button>
+
+            <button id='chooseSellColour'  onfocusout ="loadMarket()" class="jscolor
+                {hash:true, valueElement:'sellSignalColour', styleElement:'chooseSellColour'}">
+                S
+            </button>
+-->
+          </span>
+              
+          <span class='cont'>
+             
+              Display Walls
+              <input type="checkbox" value='true' id='displayWalls' onclick ="loadWalls();"  name='displayWalls'  /> 
+              
+              <span class='fullWallDetails'>
+              Full
+              <input type="checkbox" value='true' id='showWallsData' onclick ="loadGraph();"  name='showWallsData'  /> 
+              </span>
+          
+          </span>
+          <!--
+// TAKE SCREENSHOT DISABLED DUE TO NOT WORKING CORRECTLY
+          <span class="takeScreen">
+              <i class="fas fa-camera fa-2x" id='takeScreen'></i>
+            </span>
+        -->
+      </div>        
+
+
+        
+    </div>    
+        
+
+        
+         
+      
+<div  id="marketGraphDetails" class='marketGraphDetails'>
+     
+          
+<div class='marketGraphDetailsHeader'>
+    <span class='tab marketDataBtn' onclick="showArea('marketHistory','marketDataBtn')">
+    <img src='https://images.koinwatch.com/images/market_data_21.png' style='vertical-align: bottom' />  Market Data
+    </span>
+    <span class='tab orderBookStatsBtn' onclick="showArea('orderBookStats','orderBookStatsBtn')">
+    <img src='https://images.koinwatch.com/images/wall_21.png' style='vertical-align: bottom' /> Orderbook Walls
+    </span>    
+    <span class='tab algorithmBtn' onclick="showArea('algorithm','algorithmBtn')">
+    Algorithm
+    </span>
+ 
+
+</div>
+ 
+    <div class='orderBookStats detailCont'>
+     
+        
+        
+        <div class='orderBooks'>
+            
+            <div class='orderBooksInfo'>
+                
+                <h3 style="margin: 0px 0px 3px 0px;"><span class='readMoreClick' onclick="readMoreOrderBooksInfo()">Read More</span>Orderbook Walls are very large Limit Orders placed in the Orderbook for a Market</h3>
+                <div class='readMore'>
+                Orderbook Walls are able to show where people who have very large positions in place and may give some indication of the market's sentiment.  Although Orderbooks can be false by being placed and withdrawn quickly, the Walls below are shown with their Age and how much they have changed since they were first detected. Walls that have an Age of days and even weeks, can represent a large interest at specific Prices that may be considered a reduction in a "false reading". These Walls are in the Bitmex "Futures Markets" and although Walls with an Age may be false, the chance of being liquidated with your position in Bitmex reduces the "false readings" simply by how large these Walls are that the risk of millions of dollars is real. By observing the walls and viewing them on the Graph, you may create a Strategy and Algorithm based on the Wall Data. You can use Walls to place Stop Losses behind so if these Walls are taken by the Market, then you should Stop Loss at that point as they are large and indicating the market moving. You can also use the Walls to place Take Profits before them, so in case the price does reach these Walls and stop, your Take Profit order will be taken and not miss out on a price surge that did not make it through the Wall. 
+                </div>
+            </div>
+            
+            <div class='wallsHeader'>
+                
+                <span style="width:48px; text-align:center; ">Value</span>      
+
+                <span style="width:30px; text-align:right; ">Change</span>
+
+                <span style="width:55px; text-align:center; ">Age</span>
+
+                <span style="width:43px; text-align:right; margin-right:8px;">Accum</span>
+
+                <span style="width:55px; text-align:left">% to Price</span>
+
+                <span style="width:75px; text-align:center; margin-left:5px;">Price</span>
+
+
+            </div>
+            <div class='wallsCont'>
+                <div class='askWalls'>
+                    <div></div>
+                </div>
+
+                <div class='bidWalls'>
+                    <div></div>
+                </div>            
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    
+<div class='marketHistory detailCont'>
+    
+   <div class='books'>
+
+
+            <div class='bookDepths'>
+                
+                <div class='headerTitle'>
+                    Orderbook Depth  <img src='https://images.koinwatch.com/images/orderbooks_21.png'  /> 
+                    
+                </div>
+
+              <div class='orderBookDepthHeader'>
+                  <span class='smlTxt' style="width: 40px; text-align: center;margin-right: 5px;">Depth</span>
+                  <span class='smlTxt'>Sentiment</span>
+                  <span class='smlTxt' style="margin-left: 17px;">Mid Point Price and %</span>
+              </div>
+
+                <div class='OBscoresDepthTemplate'>
+                    <div class='row lvl[LEVEL]'>
+                        <span class='OBscoresDepth'></span> 
+                        <!--
+                        -->
+                        <span class='OBorderBookScore bubble'></span>  
+                        <span class='OBorderBookScorePredictionPrice'></span> 
+                        <span class='OBorderBookScorePrediction bubble'></span> 
+                        <!--
+                        <span class='OBorderBookScoreAvgPrediction bubble'></span> 
+                        <span class='OBorderBookScoreAvgPredictionPrice'></span> 
+                        <span class='OBorderBookScorePredictionErrorRate'></span> 
+                        <span class='OBorderBookScoreSumPredictionErrorRate'></span> 
+                        -->
+                      </div>
+                </div>
+
+                <div class='OBscores'>
+
+
+                </div>
+            </div>
+
+        </div> 
+    
+    <div class='marketDataCont'>
+            
+              <div class='marketHistoryHeader'>  
+                  
+                  <div style="width: 100%;">
+                                            
+                  
+                <div class='headerTitle'>
+                    
+                    <div style='width:40px;display: inline-block;'>
+                        &nbsp;
+                    </div>      
+                      <div style='width:46px'>
+                        ATR
+                      </div>                      
+
+                    <div  style='width:60px;'>
+                        Price <img src='https://images.koinwatch.com/images/sign_percentage_15.png'  /> 
+                    </div>                    
+
+                      <div style='width:80px'>
+                        Score <img src='https://images.koinwatch.com/images/star_21.png'  /> 
+                      </div>
+
+                      <div style='width:92px'>
+                         Volume <img src='https://images.koinwatch.com/images/volume_coin_21.png' /> 
+                      </div>
+                      <div style='width:85px'>
+                        Volatility <img src='https://images.koinwatch.com/images/flame_15w.png' /> 
+                      </div>  
+                      <div style='width:90px; text-align: left;'>
+                         Orderbook <img src='https://images.koinwatch.com/images/orderbooks_21.png'  /> 
+                      </div>
+
+                      <div style='width:75px'>
+                        Trend <img src='https://images.koinwatch.com/images/trend_21.png'  /> 
+                      </div> 
+
+
+                    
+
+                    
+                </div>      
+                      
+                  </div>
+                  
+                  
+                    <div style='width:106px;display: inline-block;'>
+                        &nbsp;
+                    </div>      
+
+                  <div class='ATRCont'>
+                    
+                  </div>      
+                  
+                  <div class='scoreCont'>
+                     <span class='score'></span>
+                  </div>
+                  
+                  <div class='volumeCont'>
+                     <span class='volumeScore'></span>
+                  </div>
+                  <div class='volatilityCont'>
+                    <span class='volumeFactorScore'></span>
+                  </div>  
+                  
+                  <div class='orderBookCont'>
+                     <span class='orderBookScore'></span>
+                  </div>
+
+                  <div class='indicatorsCont'>
+                    <span class='indicatorScore'></span>
+                  </div>  
+                  
+                  
+              
+                  
+                  
+              </div>   
+        
+        
+        
+            <div class='marketHistoryCont'>
+        
+            </div>
+
+    
+        
+    </div>
+    
+    
+    
+            
+        </div>
+    
+
+<div class='marketHistoryTemplate'>
+    
+    
+    
+            <div class='row marketData[TIME]'>
+                  <span class='time'>[TIMEDISPLAY]</span> 
+                
+                  <div class='ATRCont'>                    
+                    <span class='ATR[TIME]Percent ATRPercent'></span>
+                  </div>                    
+                
+                  
+                  <div class='priceCont'>
+                      <span class='change[TIME] growthScore bubble'></span>
+                      
+                  </div>                  
+                  
+                  <div class='scoreCont'>
+                    <span class='scoreAvg[TIME] bubble'></span>
+                  </div>
+                  
+                  <div class='volumeCont'>
+                  <span class='volumeScore[TTIME] volScore bubble'></span>
+                  <span class='volume[TTIME] volume'></span> 
+<!--                      
+                  <span class='buyVolumeT1 volume'></span> 
+                  <span class='sellVolumeT1 volume'></span>
+-->
+                  </div>
+                  <div class='volatilityCont'>                    
+                    <span class='volumeFactorScoreAvg[TIME] volumeFactor'></span>
+                  </div>      
+                
+                  <div class='orderBookCont'>
+                      <span class='orderBookScoreAvg[TIME] orderBookScoreAvg bubble'></span>
+                  </div>                  
+                  
+                  <div class='indicatorsCont'>
+                       <span class='indicatorScoreAvg[TIME] indicatorScoreAvg bubble'></span>
+                  </div>
+
+
+                  
+                  <span class='time'>[TIMEDISPLAY]</span> 
+
+              </div>
+    
+    
+    
+    
+    </div>    
+    
+ 
+    
+<div class='algorithm detailCont'>
+
+        
+    <div class='entryConditions'>
+        
+        <div class="algorithmSubTitle">Entry Conditions
+            <select id="entryCondition" name="entryCondition" class="algorithmKey entryCondition" onChange="displayChoice('entry')">     <option value="">Choose...</option>                   
+                <option value="Indicator">Indicator</option>            
+                <option value="Trend">Trend</option>
+                <option value="Score">Score</option>
+                <option value="Volume">Volume</option>
+                <option value="Volatility">Volatility</option>                
+                <option value="Orderbooks">Orderbooks</option>
+                <option value="Baseline">Baseline</option>
+                <option value="Crossovers">Crossovers</option>
+            </select>
+        </div>
+        
+        <div class='choice Baseline'>Baseline 
+            <select id="Baseline" name="Baseline" class="algorithmKey" onChange="">                
+                <option value=''>None</option>
+                <option value='indexPrice'>Index Price</option>
+                <option value='lastPriceAvg.1min'>Avg Price 1min</option>
+                <option value='lastPriceAvg.2min'>Avg Price 2min</option>
+                <option value='lastPriceAvg.5min'>Avg Price 5min</option>
+                <option value='lastPriceAvg.10min'>Avg Price 10min</option>
+                
+                <option value='lastPriceAvg.30min'>Avg Price 30min</option>
+                <option value='lastPriceAvg.1h'>Avg Price 1h</option>
+                <option value='lastPriceAvg.2h'>Avg Price 2h</option>
+                <option value='lastPriceAvg.4h'>Avg Price 4h</option>
+                <option value='lastPriceAvg.8h'>Avg Price 8h</option>
+                <option value='lastPriceAvg.12h'>Avg Price 12h</option>
+                <option value='lastPriceAvg.24h'>Avg Price 24h</option>                            
+            </select>
+                <input type="button" value='Add' class='addButton' onclick="addCondition('entry','Baseline')" />
+                </div>
+        
+        <div  class='choice Crossovers'>            
+            This <select id="CrossoversA" name="CrossoversA" class="algorithmKey CrossoversA" onChange="">                
+                <option value=''>None</option>
+                <option value='indexPrice'>Index Price</option>
+                <option value='lastPriceAvg.1min'>Avg Price 1min</option>
+                <option value='lastPriceAvg.2min'>Avg Price 2min</option>
+                <option value='lastPriceAvg.5min'>Avg Price 5min</option>
+                <option value='lastPriceAvg.10min'>Avg Price 10min</option>
+                
+                <option value='lastPriceAvg.30min'>Avg Price 30min</option>
+                <option value='lastPriceAvg.1h'>Avg Price 1h</option>
+                <option value='lastPriceAvg.2h'>Avg Price 2h</option>
+                <option value='lastPriceAvg.4h'>Avg Price 4h</option>
+                <option value='lastPriceAvg.8h'>Avg Price 8h</option>
+                <option value='lastPriceAvg.12h'>Avg Price 12h</option>
+                <option value='lastPriceAvg.24h'>Avg Price 24h</option>                            
+            </select>
+            <br />
+            Crosses
+            and Above / Below this <select id="CrossoversB" name="CrossoversB" class="algorithmKey CrossoversB" onChange="">                
+                <option value=''>None</option>
+                <option value='indexPrice'>Index Price</option>
+                <option value='lastPriceAvg.1min'>Avg Price 1min</option>
+                <option value='lastPriceAvg.2min'>Avg Price 2min</option>
+                <option value='lastPriceAvg.5min'>Avg Price 5min</option>
+                <option value='lastPriceAvg.10min'>Avg Price 10min</option>
+                
+                <option value='lastPriceAvg.30min'>Avg Price 30min</option>
+                <option value='lastPriceAvg.1h'>Avg Price 1h</option>
+                <option value='lastPriceAvg.2h'>Avg Price 2h</option>
+                <option value='lastPriceAvg.4h'>Avg Price 4h</option>
+                <option value='lastPriceAvg.8h'>Avg Price 8h</option>
+                <option value='lastPriceAvg.12h'>Avg Price 12h</option>
+                <option value='lastPriceAvg.24h'>Avg Price 24h</option>                            
+            </select> <input type="button" value='Add' class='addButton' onclick="addCondition('entry','Crossovers')"  />           
+        </div>  
+        
+        
+        <div class='choice Trend'>Trend
+            <select id="Trend" name="Trend" class="algorithmKey" onChange=""> 
+                <option value=''>None</option>
+                <option value='indicatorScore'>Trend Score</option>
+                <option value='indicatorScoreAvg.5s'>Trend Avg 5s</option>
+                <option value='indicatorScoreAvg.15s'>Trend Avg 15s</option>
+                <option value='indicatorScoreAvg.30s'>Trend Avg 30s</option>
+                <option value='indicatorScoreAvg.1min'>Trend Avg 1min</option>
+                <option value='indicatorScoreAvg.2min'>Trend Avg 2min</option>
+                <option value='indicatorScoreAvg.5min'>Trend Avg 5min</option>
+                <option value='indicatorScoreAvg.10min'>Trend Avg 10min</option>
+                <option value='indicatorScoreAvg.30min'>Trend Avg 30min</option>
+                <option value='indicatorScoreAvg.1h'>Trend Avg 1h</option>                                
+                <option value='indicatorScoreAvg.2h'>Trend Avg 2h</option>                                
+                <option value='indicatorScoreAvg.4h'>Trend Avg 4h</option>                                
+                <option value='indicatorScoreAvg.8h'>Trend Avg 8h</option>                                
+                <option value='indicatorScoreAvg.12h'>Trend Avg 12h</option>                                
+                <option value='indicatorScoreAvg.24h'>Trend Avg 24h</option>           
+                
+                
+            </select> 
+            
+        
+        
+        </div>
+        <div class='choice Volume'>Volume
+            <select id="Volume" name="Volume" class="algorithmKey" onChange="">
+                    <option value=''>None</option>                
+                    <option value='volumeScore'>Volume Score</option>            
+                    <option value='volumeScoreAvg.5s'>Volume Score Avg 5s</option>
+                    <option value='volumeScoreAvg.15s'>Volume Score Avg 15s</option>
+                    <option value='volumeScoreAvg.30s'>Volume Score Avg 30s</option>
+                    <option value='volumeScoreAvg.1min'>Volume Score Avg 1min</option>
+                    <option value='volumeScoreAvg.2min'>Volume Score Avg 2min</option>
+                    <option value='volumeScoreAvg.5min'>Volume Score Avg 5min</option>
+                    <option value='volumeScoreAvg.10min'>Volume Score Avg 10min</option>            
+                    <option value='volumeScoreAvg.30min'>Volume Score Avg 30min</option> 
+                    <option value='volumeScoreAvg.1h'>Volume Score Avg 1h</option> 
+                    <option value='volumeScoreAvg.2h'>Volume Score Avg 2h</option> 
+                    <option value='volumeScoreAvg.4h'>Volume Score Avg 4h</option> 
+                    <option value='volumeScoreAvg.8h'>Volume Score Avg 8h</option> 
+                    <option value='volumeScoreAvg.12h'>Volume Score Avg 12h</option> 
+                    <option value='volumeScoreAvg.24h'>Volume Score Avg 24h</option>          
+            </select>
+            
+        
+        </div>
+        
+        <div class='choice Volatility'>Volatility
+            <select id="Volatility" name="Volatility" class="algorithmKey" onChange="">
+                <option value=''>None</option>                
+                <option value='volumeFactorScore'>Volatility Score</option>
+                <option value='volumeFactorScoreAvg.1min'>Volatility Avg 1min</option>
+                <option value='volumeFactorScoreAvg.2min'>Volatility Avg 2min</option>
+                <option value='volumeFactorScoreAvg.5min'>Volatility Avg 5min</option>
+                <option value='volumeFactorScoreAvg.10min'>Volatility Avg 10min</option>
+                <option value='volumeFactorScoreAvg.30min'>Volatility Avg 30min</option>
+                <option value='volumeFactorScoreAvg.1h'>Volatility Avg 1h</option>
+                <option value='volumeFactorScoreAvg.2h'>Volatility Avg 2h</option>
+                <option value='volumeFactorScoreAvg.4h'>Volatility Avg 4h</option>
+                <option value='volumeFactorScoreAvg.8h'>Volatility Avg 8h</option>
+                <option value='volumeFactorScoreAvg.12h'>Volatility Avg 12h</option>
+                <option value='volumeFactorScoreAvg.24h'>Volatility Avg 24h</option>   
+            </select>
+            
+        
+        </div>
+        
+        <div class='choice Score'>KoinWatch Score
+            <select id="Score" name="Score" class="algorithmKey" onChange="">
+                <option value=''>None</option>                
+                    <option value='score'>KoinWatch Score</option>            
+                    <option value='scoreAvg.5s'>Score Avg 5s</option>
+                    <option value='scoreAvg.15s'>Score Avg 15s</option>
+                    <option value='scoreAvg.30s'>Score Avg 30s</option>
+                    <option value='scoreAvg.1min'>Score Avg 1min</option>
+                    <option value='scoreAvg.2min'>Score Avg 2min</option>
+                    <option value='scoreAvg.5min'>Score Avg 5min</option>
+                    <option value='scoreAvg.10min'>Score Avg 10min</option>            
+                    <option value='scoreAvg.30min'>Score Avg 30min</option>    
+                    <option value='scoreAvg.1h'>Score Avg 1h</option>
+                    <option value='scoreAvg.2h'>Score Avg 2h</option>
+                    <option value='scoreAvg.4h'>Score Avg 4h</option>
+                    <option value='scoreAvg.8h'>Score Avg 8h</option>
+                    <option value='scoreAvg.12h'>Score Avg 12h</option>
+                    <option value='scoreAvg.24h'>Score Avg 24h</option>
+            </select>
+            
+
+
+        
+        </div>         
+        <div class='choice Orderbooks'>
+            
+            
+            <div>    Orderbooks :
+        
+                <select id="Orderbooks" name="Orderbooks" class="algorithmKey" onChange="">
+                    <option value=''>None</option>                
+                    <option value='orderBookScore'>Orderbook Score</option>
+                    <option value='orderBookScoreAvg.5s'>Orderbook Score Avg 5s</option>
+                    <option value='orderBookScoreAvg.15s'>Orderbook Score Avg 15s</option>
+                    <option value='orderBookScoreAvg.30s'>Orderbook Score Avg 30s</option>
+                    <option value='orderBookScoreAvg.1min'>Orderbook Score Avg 1min</option>
+                    <option value='orderBookScoreAvg.2min'>Orderbook Score Avg 2min</option>
+                    <option value='orderBookScoreAvg.5min'>Orderbook Score Avg 5min</option>
+                    <option value='orderBookScoreAvg.10min'>Orderbook Score Avg 10min</option>
+                    <option value='orderBookScoreAvg.30min'>Orderbook Score Avg 30min</option>
+                    <option value='orderBookScoreAvg.1h'>Orderbook Score Avg 1h</option>
+                    <option value='orderBookScoreAvg.2h'>Orderbook Score Avg 2h</option>
+                    <option value='orderBookScoreAvg.4h'>Orderbook Score Avg 4h</option>
+                    <option value='orderBookScoreAvg.8h'>Orderbook Score Avg 8h</option>
+                    <option value='orderBookScoreAvg.12h'>Orderbook Score Avg 12h</option>
+                    <option value='orderBookScoreAvg.24h'>Orderbook Score Avg 24h</option>
+
+                    <option value='orderBookLevels.05.val'>Orderbook Depth &#189;%</option>
+                    <option value='orderBookLevels.1.val'>Orderbook Depth 1%</option>                
+                    <option value='orderBookLevels.2.val'>Orderbook Depth 2%</option>                
+                    <option value='orderBookLevels.5.val'>Orderbook Depth 5%</option>                
+                    <option value='orderBookLevels.10.val'>Orderbook Depth 10%</option>                
+                    <option value='orderBookLevels.25.val'>Orderbook Depth 25%</option>                
+
+
+                </select>
+            </div>
+            
+            
+        </div>
+        <div class='choice Indicator'>Indicator
+            <select id="Indicator" name="Indicator" class="algorithmKey" onChange=""> 
+                
+                <option value='heiken'>Heiken Ashi</option>
+                <option value='DMI'>DMI</option>
+            <!--    
+                <option value='aroon.5'>Aroon Up&amp; Down</option>
+                <option value='chaikMF.5'>Chaikin Money Flow</option>                
+                <option value='chaikOsc'>Chaikin Oscilator</option>
+-->
+                <option value='chaikVola'>Chaikin Volatility</option>
+                <option value='chandeM'>Chande Momentum</option>
+                <option value='coppock'>Coppock Curve</option>
+                <option value='macdS'>MACD</option>
+                <option value='macdVs'>Strong MACD</option>
+                <option value='vortex'>Vortex</option>                
+
+
+                
+            </select>
+            <select id="indicatorTimePeriod" name="indicatorTimePeriod"> 
+                <option value='1min'>1min</option>
+                <option value='2min'>2min</option>
+                <option value='5min'>5min</option>
+                <option value='10min'>10min</option>
+                <option value='30min'>30min</option>
+                <option value='1h'>1h</option>
+                <option value='2h'>2h</option>
+                <option value='4h'>4h</option>
+                <option value='8h'>8h</option>
+                <option value='8h'>12h</option>
+                <option value='8h'>24h</option>
+            </select>             
+
+            <input type="button" value='Add' class='addButton' onclick="addCondition('entry','Indicator')"  />
+            
+        
+        </div>
+                    
+        <div>
+            <div>
+                Math : <select name="entryMathCondition" class="entryMathCondition" onchange="adjustMathConditions('entry')" style="width: 100px;">                     
+                    <!--<option value='<>'>Above &amp; Below &plusmn;</option>-->
+                    <option value='><'>Between</option>                
+                    <option value='>'>Greater than</option>
+                    <option value='<'>Less than</option>
+                </select>
+                <input type="text" value="0" class="entryMathValue" name="entryMathValue" style="width: 30px;" />           
+                
+                
+                
+
+            <select id="entryRelativeVolatility" name="entryRelativeVolatility" class="algorithmKey" onChange="">
+                <option value=''>None</option>                
+                <option value='volumeFactorScore'>Volatility Score</option>
+                <option value='volumeFactorScoreAvg.1min'>Volatility Avg 1min</option>
+                <option value='volumeFactorScoreAvg.2min'>Volatility Avg 2min</option>
+                <option value='volumeFactorScoreAvg.5min'>Volatility Avg 5min</option>
+                <option value='volumeFactorScoreAvg.10min'>Volatility Avg 10min</option>
+                <option value='volumeFactorScoreAvg.30min'>Volatility Avg 30min</option>
+                <option value='volumeFactorScoreAvg.1h'>Volatility Avg 1h</option>
+                <option value='volumeFactorScoreAvg.2h'>Volatility Avg 2h</option>
+                <option value='volumeFactorScoreAvg.4h'>Volatility Avg 4h</option>
+                <option value='volumeFactorScoreAvg.8h'>Volatility Avg 8h</option>
+                <option value='volumeFactorScoreAvg.12h'>Volatility Avg 12h</option>
+                <option value='volumeFactorScoreAvg.24h'>Volatility Avg 24h</option>   
+            </select>                
+                
+                
+                
+                
+                
+                
+                <select name="entryMathCondition" class="entryMathCondition" onchange="adjustMathConditions('entry')" style="width: 100px;">                     
+                    <!--<option value='<>'>Above &amp; Below &plusmn;</option>-->
+                    <option value='><'>Between</option>                
+                    <option value='>'>Greater than</option>
+                    <option value='<'>Less than</option>
+                </select>
+                
+                
+                
+                <span class='entryMathValue2txt hideThis'> and </span>
+                <input type="text" value="0" class="entryMathValue2 hideThis" name="entryMathValue2" style="width: 30px;" />     
+            </div>
+            
+            <div>
+                Order Type :
+                <select class='entryOrderType' name='entryOrderType'>                                                            
+                    <option value='BUY'>Buy / Long</option>
+                    <option value='SELL'>Sell / Short</option>
+                </select>
+            </div>
+            <div>
+                <input type="button" value='Add' class='addButton' style="float: right" onclick="addCondition('entry')" />
+            </div>
+        </div>
+        
+        <div class='entry' id='entry'>
+            
+        </div>
+        
+
+        
+        
+        <div class='orderSettings'>
+            
+            <div>
+            Maximum Open Orders : <input type="text" value='100' name='maxOpenOrders' id='maxOpenOrders' style="width: 50px;" />
+            </div>
+            
+            <div>
+            Order Amount : <input type="text" value='100' name='orderAmount' id='orderAmount'  style="width: 50px;" />
+            </div>
+            
+            <div>
+            Additional Orders : 
+                
+                <select id="addOrders" name="addOrders"  onChange="displayOptions();"> 
+                    <option value='pips'>Pips</option>
+<!--
+                    <option value='percentage'>Percentage</option>
+                    <option value='ATR'>ATR</option>
+-->
+                </select> 
+                
+
+                <span class='addOrdersPercentage'>
+                    <input type="text" id="addOrdersPercentage" name="addOrdersPercentage" value='0.25' style='width:35px' />%
+                </span>
+                <span class='addOrdersPips'>
+                    <input type="text" id="addOrdersPips" name="addOrdersPips" value='1' style='width:35px' />
+                </span>
+                <span class='addOrdersATR'>
+                    <select id="addOrdersmultiplier" name="addOrdersmultiplier"> 
+                        <option value='0.5'>0.5x</option>
+                        <option value='1'>1x</option>
+                        <option value='1.5'>1.5x</option>
+                        <option value='2'>2x</option>
+                        <option value='2.5'>2.5x</option>
+                        <option value='3'>3x</option>
+                        <option value='3.5'>3.5x</option>                
+                        <option value='4'>4x</option>  
+                        <option value='4.5'>4.5x</option>  
+                        <option value='5'>5x</option>  
+                    </select>
+                </span>
+
+             </div>
+            
+
+            
+<!--            <div>
+                    
+               Leverage : <select id="useLeverage" name="useLeverage" > 
+                    <option value='0'>None</option>
+                    <option value='2'>2x</option>
+                    <option value='3'>3x</option>
+                    <option value='5'>5x</option>
+                    <option value='10'>10x</option>
+                    <option value='15'>15x</option>
+                    <option value='25'>25x</option>
+                    <option value='33'>33x</option>
+                    <option value='50'>50x</option>
+                    <option value='100'>100x</option>
+                    <option value='Cross'>Cross</option>
+                </select>
+                
+            </div>-->
+
+        <div class='orderMethod'>
+            <input type="radio" value="market" checked id='orderMethodEntryTaker' name='orderMethodEntry'   /> Market Orders
+            <input type="radio" value="limit" id='orderMethodEntryMaker' name='orderMethodEntry'  /> Limit Orders
+        </div>
+            
+        </div>
+        
+        
+        
+        
+    </div>
+    
+    
+    
+    <div class='exitConditions'>
+        
+        <div class="algorithmSubTitle">Exit Conditions
+            <select id="exitCondition" name="exitCondition" class="algorithmKey" onChange="displayChoice('exit')">     <option value="">Choose...</option>                   
+                <option value="Indicator">Indicator</option>            
+                <option value="Trend">Trend</option>
+                <option value="Score">Score</option>
+                <option value="Volume">Volume</option>
+                <option value="Orderbooks">Orderbooks</option>
+                <option value="Baseline">Baseline</option>
+                <option value="Crossovers">Crossovers</option>
+            </select>
+        </div>
+        
+        <div class='choice Baseline'>Baseline 
+            <select id="Baseline" name="Baseline" class="algorithmKey" onChange="">                
+                <option value=''>None</option>
+                <option value='indexPrice'>Index Price</option>
+                <option value='lastPriceAvg.1min'>Avg Price 1min</option>
+                <option value='lastPriceAvg.2min'>Avg Price 2min</option>
+                <option value='lastPriceAvg.5min'>Avg Price 5min</option>
+                <option value='lastPriceAvg.10min'>Avg Price 10min</option>
+                
+                <option value='lastPriceAvg.30min'>Avg Price 30min</option>
+                <option value='lastPriceAvg.1h'>Avg Price 1h</option>
+                <option value='lastPriceAvg.2h'>Avg Price 2h</option>
+                <option value='lastPriceAvg.4h'>Avg Price 4h</option>
+                <option value='lastPriceAvg.8h'>Avg Price 8h</option>
+                <option value='lastPriceAvg.12h'>Avg Price 12h</option>
+                <option value='lastPriceAvg.24h'>Avg Price 24h</option>                            
+            </select>
+                <input type="button" value='Add' class='addButton' onclick="addCondition('exit')" />
+                </div>
+        
+        <div  class='choice Crossovers'>            
+            This <select id="CrossoversA" name="CrossoversA" class="algorithmKey CrossoversA" onChange="">                
+                <option value=''>None</option>
+                <option value='indexPrice'>Index Price</option>
+                <option value='lastPriceAvg.1min'>Avg Price 1min</option>
+                <option value='lastPriceAvg.2min'>Avg Price 2min</option>
+                <option value='lastPriceAvg.5min'>Avg Price 5min</option>
+                <option value='lastPriceAvg.10min'>Avg Price 10min</option>
+                
+                <option value='lastPriceAvg.30min'>Avg Price 30min</option>
+                <option value='lastPriceAvg.1h'>Avg Price 1h</option>
+                <option value='lastPriceAvg.2h'>Avg Price 2h</option>
+                <option value='lastPriceAvg.4h'>Avg Price 4h</option>
+                <option value='lastPriceAvg.8h'>Avg Price 8h</option>
+                <option value='lastPriceAvg.12h'>Avg Price 12h</option>
+                <option value='lastPriceAvg.24h'>Avg Price 24h</option>                            
+            </select>
+            <br />
+            Crosses
+            and Above / Below this <select id="CrossoversB" name="CrossoversB" class="algorithmKey CrossoversB" onChange="">                
+                <option value=''>None</option>
+                <option value='indexPrice'>Index Price</option>
+                <option value='lastPriceAvg.1min'>Avg Price 1min</option>
+                <option value='lastPriceAvg.2min'>Avg Price 2min</option>
+                <option value='lastPriceAvg.5min'>Avg Price 5min</option>
+                <option value='lastPriceAvg.10min'>Avg Price 10min</option>
+                
+                <option value='lastPriceAvg.30min'>Avg Price 30min</option>
+                <option value='lastPriceAvg.1h'>Avg Price 1h</option>
+                <option value='lastPriceAvg.2h'>Avg Price 2h</option>
+                <option value='lastPriceAvg.4h'>Avg Price 4h</option>
+                <option value='lastPriceAvg.8h'>Avg Price 8h</option>
+                <option value='lastPriceAvg.12h'>Avg Price 12h</option>
+                <option value='lastPriceAvg.24h'>Avg Price 24h</option>                            
+            </select> <input type="button" value='Add' class='addButton' onclick="addCondition('exit')"  />           
+        </div>  
+        
+        
+        <div class='choice Trend'>Trend
+            <select id="Trend" name="Trend" class="algorithmKey" onChange=""> 
+                <option value=''>None</option>
+                <option value='indicatorScore'>Trend Score</option>
+                <option value='indicatorScoreAvg.5s'>Trend Avg 5s</option>
+                <option value='indicatorScoreAvg.15s'>Trend Avg 15s</option>
+                <option value='indicatorScoreAvg.30s'>Trend Avg 30s</option>
+                <option value='indicatorScoreAvg.1min'>Trend Avg 1min</option>
+                <option value='indicatorScoreAvg.2min'>Trend Avg 2min</option>
+                <option value='indicatorScoreAvg.5min'>Trend Avg 5min</option>
+                <option value='indicatorScoreAvg.10min'>Trend Avg 10min</option>
+                <option value='indicatorScoreAvg.30min'>Trend Avg 30min</option>
+                <option value='indicatorScoreAvg.1h'>Trend Avg 1h</option>                                
+                <option value='indicatorScoreAvg.2h'>Trend Avg 2h</option>                                
+                <option value='indicatorScoreAvg.4h'>Trend Avg 4h</option>                                
+                <option value='indicatorScoreAvg.8h'>Trend Avg 8h</option>                                
+                <option value='indicatorScoreAvg.12h'>Trend Avg 12h</option>                                
+                <option value='indicatorScoreAvg.24h'>Trend Avg 24h</option>                                                        
+            </select> <input type="button" value='Add' class='addButton' onclick="addCondition('exit')" />
+        
+        
+        </div>
+        <div class='choice Volume'>Volume
+            <select id="Volume" name="Volume" class="algorithmKey" onChange="">
+                <option value=''>None</option>
+                    <option value='volumeScore'>Volume Score</option>            
+                    <option value='volumeScoreAvg.5s'>Volume Score Avg 5s</option>
+                    <option value='volumeScoreAvg.15s'>Volume Score Avg 15s</option>
+                    <option value='volumeScoreAvg.30s'>Volume Score Avg 30s</option>
+                    <option value='volumeScoreAvg.1min'>Volume Score Avg 1min</option>
+                    <option value='volumeScoreAvg.2min'>Volume Score Avg 2min</option>
+                    <option value='volumeScoreAvg.5min'>Volume Score Avg 5min</option>
+                    <option value='volumeScoreAvg.10min'>Volume Score Avg 10min</option>            
+                    <option value='volumeScoreAvg.30min'>Volume Score Avg 30min</option> 
+                    <option value='volumeScoreAvg.1h'>Volume Score Avg 1h</option> 
+                    <option value='volumeScoreAvg.2h'>Volume Score Avg 2h</option> 
+                    <option value='volumeScoreAvg.4h'>Volume Score Avg 4h</option> 
+                    <option value='volumeScoreAvg.8h'>Volume Score Avg 8h</option> 
+                    <option value='volumeScoreAvg.12h'>Volume Score Avg 12h</option> 
+                    <option value='volumeScoreAvg.24h'>Volume Score Avg 24h</option> 
+                
+            </select>
+        <input type="button" value='Add' class='addButton' onclick="addCondition('exit')" />
+        
+        </div>
+        <div class='choice Score'>KoinWatch Score
+            <select id="Score" name="Score" class="algorithmKey" onChange="">
+                <option value=''>None</option>
+                    <option value='score'>KoinWatch Score</option>            
+                    <option value='scoreAvg.5s'>Score Avg 5s</option>
+                    <option value='scoreAvg.15s'>Score Avg 15s</option>
+                    <option value='scoreAvg.30s'>Score Avg 30s</option>
+                    <option value='scoreAvg.1min'>Score Avg 1min</option>
+                    <option value='scoreAvg.2min'>Score Avg 2min</option>
+                    <option value='scoreAvg.5min'>Score Avg 5min</option>
+                    <option value='scoreAvg.10min'>Score Avg 10min</option>            
+                    <option value='scoreAvg.30min'>Score Avg 30min</option>    
+                    <option value='scoreAvg.1h'>Score Avg 1h</option>
+                    <option value='scoreAvg.2h'>Score Avg 2h</option>
+                    <option value='scoreAvg.4h'>Score Avg 4h</option>
+                    <option value='scoreAvg.8h'>Score Avg 8h</option>
+                    <option value='scoreAvg.12h'>Score Avg 12h</option>
+                    <option value='scoreAvg.24h'>Score Avg 24h</option>
+            </select>
+        <input type="button" value='Add' class='addButton' onclick="addCondition('exit')" />
+        
+        </div>        
+        <div class='choice Orderbooks'>Orderbooks
+        
+            <select id="Orderbooks" name="Orderbooks" class="algorithmKey" onChange="">
+                <option value=''>None</option>
+                <option value='orderBookScore'>Orderbook Score</option>
+                <option value='orderBookScoreAvg.5s'>Orderbook Score Avg 5s</option>
+                <option value='orderBookScoreAvg.15s'>Orderbook Score Avg 15s</option>
+                <option value='orderBookScoreAvg.30s'>Orderbook Score Avg 30s</option>
+                <option value='orderBookScoreAvg.1min'>Orderbook Score Avg 1min</option>
+                <option value='orderBookScoreAvg.2min'>Orderbook Score Avg 2min</option>
+                <option value='orderBookScoreAvg.5min'>Orderbook Score Avg 5min</option>
+                <option value='orderBookScoreAvg.10min'>Orderbook Score Avg 10min</option>
+                <option value='orderBookScoreAvg.30min'>Orderbook Score Avg 30min</option>
+                <option value='orderBookScoreAvg.1h'>Orderbook Score Avg 1h</option>
+                <option value='orderBookScoreAvg.2h'>Orderbook Score Avg 2h</option>
+                <option value='orderBookScoreAvg.4h'>Orderbook Score Avg 4h</option>
+                <option value='orderBookScoreAvg.8h'>Orderbook Score Avg 8h</option>
+                <option value='orderBookScoreAvg.12h'>Orderbook Score Avg 12h</option>
+                <option value='orderBookScoreAvg.24h'>Orderbook Score Avg 24h</option>
+                
+                <option value='orderBookLevels.05.val'>Orderbook Depth &#189;%</option>
+                <option value='orderBookLevels.1.val'>Orderbook Depth 1%</option>                
+                <option value='orderBookLevels.2.val'>Orderbook Depth 2%</option>                
+                <option value='orderBookLevels.5.val'>Orderbook Depth 5%</option>                
+                <option value='orderBookLevels.10.val'>Orderbook Depth 10%</option>                
+                <option value='orderBookLevels.25.val'>Orderbook Depth 25%</option>                
+       
+                
+            </select>
+        <input type="button" value='Add' class='addButton' onclick="addCondition('exit')" />
+        </div>
+        <div class='choice Indicator'>Indicator
+            <select id="Indicator" name="Indicator" class="algorithmKey" onChange=""> 
+                <option value='heiken'>Heiken Ashi</option>
+                <option value='DMI'>DMI</option>
+            <!--    
+                <option value='aroon.5'>Aroon Up&amp; Down</option>
+                <option value='chaikMF.5'>Chaikin Money Flow</option>                
+                <option value='chaikOsc'>Chaikin Oscilator</option>
+-->
+                <option value='chaikVola'>Chaikin Volatility</option>
+                <option value='chandeM'>Chande Momentum</option>
+                <option value='coppock'>Coppock Curve</option>
+                <option value='macdS'>MACD</option>
+                <option value='macdVs'>Strong MACD</option>
+                <option value='vortex'>Vortex</option>                
+            </select>
+            <select id="indicatorTimePeriod" name="indicatorTimePeriod" > 
+                <option value='1min'>1min</option>
+                <option value='2min'>2min</option>
+                <option value='5min'>5min</option>
+                <option value='10min'>10min</option>
+                <option value='30min'>30min</option>
+                <option value='1h'>1h</option>
+                <option value='2h'>2h</option>
+                <option value='4h'>4h</option>
+                <option value='8h'>8h</option>
+                <option value='8h'>12h</option>
+                <option value='8h'>24h</option>
+            </select> 
+            <input type="button" value='Add' class='addButton' onclick="addCondition('exit')"  />
+            
+        
+        </div>
+        
+        <div class='exit' id='exit'>
+            
+        </div>
+        
+        <div class='takeProfit'>Take Profit
+            
+            <select id="takeProfit" name="takeProfit" class="algorithmKey" onChange="displayOptions();" >                                 
+                
+                <option value=''>None</option>
+                <option value='percentage'>Percentage</option>
+                <option value='pips'>Pips</option>
+                
+            <!--    <option value='ATR'>ATR</option>                -->
+                
+            </select>
+            <span class='takeProfitPercentage'>
+            <input type="text" id="takeProfitPercentage" name="takeProfitPercentage" value='0.25' style='width:35px' />%
+            </span>
+            <span class='takeProfitPips'>
+                <input type="text" id="takeProfitPips" name="takeProfitPips" value='1' style='width:35px' />
+            </span>
+            <span class='takeProfitATR'>
+            <select id="takeProfitmultiplier" name="takeProfitmultiplier"> 
+                <option value='0.5'>0.5x</option>
+                <option value='1'>1x</option>
+                <option value='1.5'>1.5x</option>
+                <option value='2'>2x</option>
+                <option value='2.5'>2.5x</option>
+                <option value='3'>3x</option>
+                <option value='3.5'>3.5x</option>                
+                <option value='4'>4x</option>  
+                <option value='4.5'>4.5x</option>  
+                <option value='5'>5x</option>  
+            </select>
+            <select id="takeProfitTimePeriod" name="takeProfitTimePeriod"> 
+                <option value='1min'>1min</option>
+                <option value='2min'>2min</option>
+                <option value='5min'>5min</option>
+                <option value='10min'>10min</option>
+                <option value='30min'>30min</option>
+                <option value='1h'>1h</option>
+                <option value='2h'>2h</option>
+                <option value='4h'>4h</option>
+                <option value='8h'>8h</option>
+            </select>            
+            </span>
+            <div style="padding-left: 63px;">
+                <input type="checkbox" value='Y' id='trailingTakeProfit'  name='trailingTakeProfit'  /> Trailing Market Order
+            </div>
+            
+            
+        </div> 
+        
+        
+        <div class='stopLoss'>Stop Loss
+            
+            <select id="stopLoss" name="stopLoss" class="algorithmKey" onChange="displayOptions();" >                                 
+                
+                <option value=''>None</option>
+                <option value='percentage'>Percentage</option>
+                <option value='ATR'>ATR</option>
+                
+            </select>
+            <span class='stopLossPercentage'>
+            <input type="text" id="stopLossPercentage" name="stopLossPercentage" value='0.25' style='width:35px' />%
+            </span>
+            <select id="stopLossMultiplier" name="stopLossATRmultiplier"> 
+                <option value='0.5'>0.5x</option>
+                <option value='1'>1x</option>
+                <option value='1.5'>1.5x</option>
+                <option value='2'>2x</option>
+                <option value='2.5'>2.5x</option>
+                <option value='3'>3x</option>
+                <option value='3.5'>3.5x</option>                
+                <option value='4'>4x</option>  
+                <option value='4.5'>4.5x</option>  
+                <option value='5'>5x</option>  
+            </select>
+            <select id="stopLossTimePeriod" name="stopLossTimePeriod" > 
+                <option value='1min'>1min</option>
+                <option value='2min'>2min</option>
+                <option value='5min'>5min</option>
+                <option value='10min'>10min</option>
+                <option value='30min'>30min</option>
+                <option value='1h'>1h</option>
+                <option value='2h'>2h</option>
+                <option value='4h'>4h</option>
+                <option value='8h'>8h</option>
+            </select>            
+            
+            <div style="padding-left: 56px;">
+                <input type="checkbox" value='Y' id='trailingStopLoss'  name='trailingStopLoss'  /> Trailing Market Order
+            </div>
+            
+            
+        </div> 
+        
+        <div class='orderMethod'>
+            <input type="radio" value="market" checked id='orderMethodExitTaker' name='orderMethodExit'  /> Market Orders
+            <input type="radio" value="limit" id='orderMethodExitMaker'   name='orderMethodExit' /> Limit Orders
+        </div>
+
+        
+    </div>
+     
+    
+    <div class='algorithmResults'>
+        
+        <div class='algorithmSubTitle'>
+        Results
+        </div>
+        
+        <div>
+        <div style='text-align: center'>
+        <span class='pnlPercent bubble'></span> <br />
+        </div>    
+        Gross = <span class='grossPercent bubble'></span><br />
+        Fees = <span class='feesPercent bubble'></span>  <br />
+        Max PnL = <span class='maxPnL bubble'></span><br />
+        Avg PnL = <span class='avgPnL bubble'></span><br />
+        Max Drawdown = <span class='maxDrawdown bubble'></span><br />
+        Avg Drawdown = <span class='avgDrawdown bubble'></span><br />
+            
+        </div>
+        <div>
+            Total Trades = <span class='trades'></span> <br />            
+            Pending Trades = <span class='openTrades'></span> <br />            
+            Successful = <span class='successTrades'></span> <br />
+            StopLoss = <span class='stopLossTrades'></span> <br />
+            Avg Time Taken = <span class='avgTimeTaken'></span> mins
+        </div>
+        <div>
+        Accuracy = <span class='accuracy bubble'></span> 
+        </div>
+        
+        <div>
+            <input type="checkbox" value='Y' id='showAlgorithmOrderLog'  name='showAlgorithmOrderLog'  /> Show Algorithm Order Log
+        </div>
+       
+            <input type='button' value='Backtest Algorithm' class='calculateButton' onclick="calculateAlgorithm()" />
+        
+       
+    
+    </div>
+        
+    
+        <div class='orderLogRowMaster hideThis'>
+            <!--
+-->
+            <div>
+            <span class='entryTime'></span>   
+            <span class='exitTime'></span>   
+            <span class='timeTaken'></span>   
+            <span class='orderType'></span>            
+            <span class='entryPrice'></span>            
+            <span class='exitPrice'></span>   
+            <span class='stopLossPrice'></span>     
+            <span class='drawdown bubbleAlgorithm'></span>
+            <span class='grossPercent bubbleAlgorithm'></span>       
+            <span class='feesPercent bubbleAlgorithm'></span>
+            <span class='pnlPercent bubbleAlgorithm'></span>
+            </div>
+            <div>
+                <div class='entryData'></div>
+                <div class='exitData'></div>
+            </div>
+            
+        </div> 
+    
+        <div class='orderLog' id='orderLog'>          
+        <div class='orderLogHeader'>
+        <!--    
+        <span class='note'>Note</span>
+        -->
+            <span>Start</span>
+            <span>Finished</span>
+            <span>Time taken</span>
+            <span>Order Type</span>
+            <span>Entry Price</span>
+            <span>Exit Price</span>
+            <span>Stop Loss</span>            
+            <span class='drawdown'>DDown</span>
+            <span class='grossPercent'>Gross</span>
+            <span class='feesPercent'>Fee</span>            
+            <span class='pnlPercent'>Nett</span>            
+            
+            
+        </div>            
+
+        </div> 
+            
+        
+    
+    </div>   
+    
+    
+    <div class='loadingData detailCont'>
+    </div>
+    
+    
+      
+      </div>
+
+      
+  </div>
+
+<input type="text" val='marketHistory' name='showArea' id='showArea' class='showArea' />
+<input type="text" val='marketDataBtn' name='showAreaBtnKey' id='showAreaBtnKey' class='showArea' />
+
+<div id="progressLoaderStorage" class="progressLoaderStorage">
+        <div class="progressCont">
+                <div class="meter kwCol animate">
+                    <span style="width: 100%"><span style="width: 100%">&nbsp;Loading....</span></span>
+                </div>
+        </div>        
+</div> 
+
+
+    
+    <div class='footer'>
+    
+        
+<!-- FOOTER -->                     
+  <div class='footer'>      
+      <div class='section menu'>
+          <div class='footerCont'>
+            
+                
+                <div class='footerLinks'>    
+                
+                    <a href="/">Home</a>
+                
+                &nbsp;&nbsp;&nbsp;
+                <a href='/about/'>About Us</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href='/terms/'>Terms &amp; Conditions</a>
+                &nbsp;&nbsp;&nbsp;
+                <a href='/privacy/'>Privacy &amp; Cookies Policy</a>
+                </div>
+                    
+                &copy; 2020 KoinWatch Co. Ltd  <br>15/48 M.6, Bophut Koh Samui, Suratthani 84320 Thailand
+          </div>      
+        </div>
+      </div>                              
+    </div>
+<!-- END OF FOOTER -->   
+        
+    
+<script src="https://java.koinwatch.com/java/cookie.js"></script>        
+<link rel="stylesheet" href="https://css.koinwatch.com/css/cookie.css" />          
+<div id="cookieConsent">
+    <div id="closeCookieConsent">x</div>
+    This website is using cookies. <a href="/privacy/" target="_blank">More info</a> <a class="cookieConsentOK">OK</a>
+</div>
+
+
+        
+ 
+    </div>
+    
+</div>    
+
+<script src="signals.js"></script>     
+<script>
+
+window.onload = function () {
+	// RESIZE 
+	resizeToFit()
+}
+let resize = ''
+window.onresize = function () {
+    // CLEAR TIMER TO STOP RESIZING IMMEDIATELY
+    if(resize != '') clearTimeout(resize)
+    // SET TIMER TO RESIZE AFTER A DELAY TO AVOID MULTIPLE CALLS TO SCREEN
+    resize = setTimeout(function(){        
+        // RESIZE 
+        resizeToFit()
+
+        if($(".marketArea").is(":visible")) {        
+            // RELOAD MARKET AND GRAPH TO FIT RESIZED WINDOW 
+            loadGraph()   
+            console.log('LOADED MARKET FROM RESIZE')
+        }
+    },100)
+    
+}
+
+
+function resizeToFit() {
+       if($(window).innerWidth() > 375) {
+		$(".marketArea").innerWidth(($(window).innerWidth() - $(".marketsListData").innerWidth() - 42))
+        $(".marketGraph").innerWidth($(".marketGraphHeader").innerWidth() - $(".marketBars").innerWidth()) 
+	   }
+    
+}
+  
+</script>    
+    
+</body>
+</html>
+    
+
+

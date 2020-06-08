@@ -1,0 +1,15 @@
+let exchangesList = [       {
+            "exchangeID":7,
+             "exchangeName":"BITTREX"
+        },
+        {
+            "exchangeID":15,
+            "exchangeName":"BINANCE"
+        },
+        {   "exchangeID":21,
+            "exchangeName":"BITMEX"
+        },
+        {   "exchangeID":34,
+            "exchangeName":"DERIBIT"
+        }
+]
